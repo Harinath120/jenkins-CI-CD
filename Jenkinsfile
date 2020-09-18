@@ -1,20 +1,22 @@
 pipeline {
 	agent any
-	stages('Build') {
-		steps {
-			echo "Build"
+	stages {
+		stage('Build') {
+			steps {
+				echo "B"
+			}
 		}
-	}
 
-	stages('Test') {
-		steps {
-			echo "Test"
+		stage('Test') {
+			steps {
+				echo "Test"
+			}
 		}
-	}
 
-	stages('Integration Test') {
-		steps {
-			echo "Integration Test"
+		stage('Integration Test') {
+			steps {
+				echo "Integration Test"
+			}
 		}
 	}
 }
