@@ -45,7 +45,7 @@ pipeline {
 				sh "mvn package -DskipTests"
 			}
 		}
-		
+
 		stage('Build Docker Image') {
 			steps {
 				//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
@@ -57,11 +57,11 @@ pipeline {
 
 		stage('Push Docker Image') {
 			steps {
-				script {
-					docker.withRegistry('', 'dockerhub')
+				
+				    docker.withRegistry('', 'dockerhub')
 					dockerImage.push();
                     dockerImage.push('latest')
-				}
+				
 
 			}
 		}
