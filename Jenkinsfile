@@ -6,6 +6,7 @@ pipeline {
 		dockerHome = tool 'mydocker'
 		mavenHome = tool 'mymaven'
 		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+		registryCredential = 'dockerhub'
 	}
 
 
@@ -58,14 +59,11 @@ pipeline {
 		stage('Push Docker Image') {
 			steps {
 				script {
-					docker.withRegistry('', 'dockerhub')
-					dockerImage.push();
-                    dockerImage.push('latest')
+					withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+					sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+					sh "docker push harinath150/currency-exchange-devops:jenkins-issueinPipeline-$env.BUILD_NUMBER"
                     
-				}
-				
-				    
-				
+				}	    	
 
 			}
 		}
