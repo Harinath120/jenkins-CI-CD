@@ -62,7 +62,7 @@ pipeline {
 				script {
 					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 						sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-						sh "docker push harinath150/currency-exchange-devops:jenkins-devops-microservice-pipeline-$env.BUILD_NUMBER"
+						sh "docker push harinath150/currency-exchange-devops:latest-$env.BUILD_NUMBER"
 					}			
                     
 				}	    	
