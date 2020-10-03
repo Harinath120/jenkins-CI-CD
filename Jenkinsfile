@@ -52,7 +52,7 @@ pipeline {
 				//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
 				script {
 					dockerImage = docker.build("in28min/currency-exchange-devops")
-					dockerImage = docker.tag ("in28min/currency-exchange-devops harinath150/currency-exchange-devops")
+					sh "docker tag in28min/currency-exchange-devops harinath150/currency-exchange-devops"
 				}
 			}
 		}
