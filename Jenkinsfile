@@ -51,7 +51,8 @@ pipeline {
 			steps {
 				//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
 				script {
-					dockerImage = docker.build("in28min/currency-exchange-devops:${env.BUILD_TAG}")
+					dockerImage = docker.build("in28min/currency-exchange-devops")
+					dockerImage = docker.tag ("in28min/currency-exchange-devops harinath150/currency-exchange-devops")
 				}
 			}
 		}
@@ -61,7 +62,7 @@ pipeline {
 				script {
 					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 						sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-						sh "docker push in28min/currency-exchange-devops:latest-$env.BUILD_NUMBER"
+						sh "docker push harinath150/currency-exchange-devops:jenkins-devops-microservice-pipeline-$env.BUILD_NUMBER"
 					}			
                     
 				}	    	
