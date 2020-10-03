@@ -59,11 +59,10 @@ pipeline {
 		stage('Push Docker Image') {
 			steps {
 				script {
-					withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-					  sh "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD"
-					  sh "docker push harinath150/currency-exchange-devops:jenkins-devops-microservice-pipeline-$env.BUILD_NUMBER"
-					}
-					
+					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+						sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+						sh "docker push harinath150/currency-exchange-devops:jenkins-issueinPipeline-$env.BUILD_NUMBER"
+					}			
                     
 				}	    	
 
