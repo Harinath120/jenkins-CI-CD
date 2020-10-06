@@ -49,7 +49,7 @@ pipeline {
 		stage('Deploy') {
 			steps{
 				echo 'Deploy to tomcat'
-				deploy adapters: [tomcat7(credentialsId: 'deployer_user', path: '', url: 'http://172.17.167.14:9090/')], contextPath: 'pipelinetest', war: '**/*.war'
+				sh "deploy adapters: [tomcat7(credentialsId: 'deployer_user', path: '', url: 'http://172.17.167.14:9090/')], contextPath: 'pipelinetest', war: '**/*.war'"
 			}
 			
 		}
