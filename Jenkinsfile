@@ -46,14 +46,6 @@ pipeline {
 				sh "mvn package -DskipTests"
 			}
 		}
-		stage('Deploy') {
-			steps{
-				echo 'Deploy to tomcat'
-				sh "deploy adapters: [tomcat7(credentialsId: 'deployer_user', path: '', url: 'http://172.17.167.14:9090/')], contextPath: 'pipelinetest', war: '**/*.war'"
-			}
-			
-		}
-
 		stage('Build Docker Image') {
 			steps {
 				//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
